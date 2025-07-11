@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>წიგნების სია</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center text-primary">📚 წიგნების სია</h1>
+
+        {% if books %}
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for book in books %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">ავტორი: {{ book.author }}</h6>
+                                <p class="card-text">{{ book.description|truncatechars:200 }}</p>
+                            </div>
+                            <div class="card-footer text-end">
+                                <small class="text-muted">გამოცემის წელი: {{ book.published_year }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center" role="alert">
+                წიგნები ვერ მოიძებნა.
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS (optional for interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
